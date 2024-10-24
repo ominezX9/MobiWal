@@ -31,7 +31,9 @@
       "@constants/*": ["constants/*"],
       "@routes/*": ["routes/*"],
       "@api/*": ["api/*"]
-    }
+    },
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "types" : [] 
   },
   "include": ["src"]
 }
