@@ -25,15 +25,12 @@
       "@components/*": ["components/*"],
       "@contexts/*": ["contexts/*"],
       "@hooks/*": ["hooks/*"],
-      "@types/*": ["types/*"],
       "@utils/*": ["utils/*"],
       "@assets/*": ["assets/*"],
       "@constants/*": ["constants/*"],
       "@routes/*": ["routes/*"],
       "@api/*": ["api/*"]
-    },
-    "typeRoots": ["node_modules/@types", "src/types"],
-    "types" : [] 
+    }
   },
   "include": ["src"]
 }
