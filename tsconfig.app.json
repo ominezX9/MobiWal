@@ -22,15 +22,15 @@
     "noFallthroughCasesInSwitch": true,
     // "noUncheckedSideEffectImports": true
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@contexts/*": ["src/contexts/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@types/*": ["src/types/*"],
-      "@utils/*": ["src/utils/*"],
-      "@assets/*": ["src/assets/*"],
-      "@constants/*": ["src/constants/*"],
-      "@routes/*": ["src/routes/*"],
-      "@services/*": ["src/services/*"]
+      "@components/*": ["components/*"],
+      "@contexts/*": ["contexts/*"],
+      "@hooks/*": ["hooks/*"],
+      "@types/*": ["types/*"],
+      "@utils/*": ["utils/*"],
+      "@assets/*": ["sssets/*"],
+      "@constants/*": ["constants/*"],
+      "@routes/*": ["routes/*"],
+      "@services/*": ["services/*"]
     }
   },
   "include": ["src"]
