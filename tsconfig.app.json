@@ -30,7 +30,7 @@
       "@assets/*": ["sssets/*"],
       "@constants/*": ["constants/*"],
       "@routes/*": ["routes/*"],
-      "@services/*": ["services/*"]
+      "@api/*": ["api/*"]
     }
   },
   "include": ["src"]
