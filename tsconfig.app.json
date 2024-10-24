@@ -27,7 +27,7 @@
       "@hooks/*": ["hooks/*"],
       "@types/*": ["types/*"],
       "@utils/*": ["utils/*"],
-      "@assets/*": ["sssets/*"],
+      "@assets/*": ["assets/*"],
       "@constants/*": ["constants/*"],
       "@routes/*": ["routes/*"],
       "@api/*": ["api/*"]
