@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userDetails from "./slices/userDetails";
+import headerControls from "./slices/headerControls";
 
 import {
     authApi,
@@ -15,7 +16,8 @@ export const store = configureStore({
     reducer: {
         [authApi.reducerPath]: authApi.reducer,
         [usersApi.reducerPath]: usersApi.reducer,
-        "userDetails" : userDetails
+        "userDetails" : userDetails,
+        "headerControls": headerControls
     },
     middleware(getDefaultMiddleware) { 
         return getDefaultMiddleware().concat(middleware);
