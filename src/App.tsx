@@ -1,9 +1,13 @@
-import React from 'react'
+import { Provider } from "react-redux";
+import { store } from "./store";
+import { RouterProvider } from "react-router-dom";
+
 
 export default function App() {
   return (
-    <div>
-      
-    </div>
+    <Provider store={store}>
+      <div>
+      </div>
+    </Provider>
   )
 }
