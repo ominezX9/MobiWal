@@ -7,6 +7,7 @@ import { useAppSelector } from '@hooks/redux-hooks';
 import { SessionStorageService } from 'services/SessionStorageService';
 import { useNavigate } from 'react-router-dom';
 import { formatNumber } from '@utils/numberFormatter';
+import { Link } from 'react-router-dom';
 
 export default function AmountCard() {
     const userPass = useAppSelector((store) => store.userDetails.password);
@@ -31,24 +32,24 @@ export default function AmountCard() {
             </div>
 
             <div className="quickkactions flex justify-around p-10 px-20">
-                <button className="quickaction">
+                <Link to="transfer" className="quickaction">
                     <img src={Transfer} />
                     <span>Transfer</span>
-                </button>
-                <button className="quickaction">
+                </Link>
+                <Link to="Topup" className="quickaction">
                     <img src={Topup} />
-                    <span>Withdraw</span>
-                </button>
-                <button className="quickaction">
+                    <span>Topup</span>
+                </Link>
+                <Link to="bills" className="quickaction">
                     <img src={Bills} />
 
                     <span>Bills</span>
-                </button>
-                <button className="quickaction">
+                </Link>
+                <Link to="more" className="quickaction">
                     <img src={More} />
 
                     <span>More</span>
-                </button>
+                </Link>
             </div>
 
         </div>
