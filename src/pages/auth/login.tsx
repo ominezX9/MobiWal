@@ -38,7 +38,7 @@ export default function Login(){
     const handleFormSubmission = async (values: typeof initialValues) => {
         try {
           const response = await login(values).unwrap();
-          if(response && response.length > 0) {
+          if(Array.isArray(response)) {
             const [userData] = response;
 
             dispatch(updateUser(userData));
