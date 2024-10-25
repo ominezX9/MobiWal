@@ -1,0 +1,139 @@
+@layer {
+    .quickaction {
+      @apply flex flex-col items-center justify-center;
+    }
+    .quickaction span{
+        @apply text-sm text-gray;
+    }
+
+}
+
+
+@layer{
+  form{
+    width: 80%;
+    margin: 40px auto;
+
+  }
+  /* Input Styling */
+  .input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.2s ease-in-out;
+  }
+
+  .input:focus {
+    border-color: #EA580C;
+    outline: none;
+  }
+
+  /* Margin Spacing */
+  .mb-4 {
+    margin-bottom: 16px;
+  }
+
+  .mb-2 {
+    margin-bottom: 8px;
+  }
+
+  .mb-10 {
+    margin-bottom: 40px;
+  }
+
+  /* Text Sizes */
+  .text-xs {
+    font-size: 12px;
+  }
+
+  .text-base {
+    font-size: 16px;
+  }
+
+  /* Text Colors */
+  .text-active {
+    color: #1E90FF;
+  }
+
+  .text-active:hover {
+    color: #1C86EE;
+    text-decoration: underline;
+  }
+
+  /* Font Weights */
+  .font-semibold {
+    font-weight: 600;
+  }
+
+  .font-normal {
+    font-weight: 400;
+  }
+
+  /* Block Display */
+  .block {
+    display: block;
+  }
+
+  /* Label Text */
+  .label-text {
+    margin-bottom: 8px;
+    display: block;
+    font-size: 14px;
+    color: #333;
+  }
+
+  /* Error Message Styling */
+  .error-message {
+    color: #EA580C;
+    font-size: 12px;
+  }
+
+  /* Button Styling */
+  button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #EA580C;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  button:hover {
+    background-color: #D2510A;
+  }
+
+  button:disabled {
+    background-color: #F4A261;
+    cursor: not-allowed;
+  }
+
+  /* Show/Hide Password Toggle */
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #1E90FF;
+    cursor: pointer;
+  }
+
+  /* Link Styling */
+  a {
+    color: #1E90FF;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
