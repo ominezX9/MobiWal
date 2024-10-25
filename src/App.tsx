@@ -3,13 +3,16 @@ import { store } from "store";
 import { RouterProvider } from "react-router-dom";
 import routes from "./routes";
 import './App.css';
+import { Toaster } from "sonner";
+
 export default function App() {
 
 
   return (
     <Provider store={store}>
       <div>
-        <RouterProvider router={routes}/>
+        <Toaster position="top-right"/>
+          <RouterProvider router={routes}/>
       </div>
     </Provider>
   )
