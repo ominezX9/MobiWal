@@ -1,7 +1,5 @@
 import { useAppSelector } from '@hooks/redux-hooks';
 import { useNavigate } from 'react-router-dom';
-// import {ArrowLeft} from '../../../assets/vectors/Arrow - Left.svg'
-import React from 'react'
 
 export default function Header() {
     const navigate = useNavigate();
@@ -19,6 +17,11 @@ export default function Header() {
                   headToUrl ? navigate(headToUrl) : navigate(-1)}
                 className={"flex items-center larr sm:mr-3 mr-1 sm:ml-0 ml-3"}
               >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.25 12.2743L19.25 12.2743" stroke="#200E32" stroke-width="1.656" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M10.2998 18.2987L4.2498 12.2747L10.2998 6.24969" stroke="#200E32" stroke-width="1.656" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+
                 {/* <img src={ArrowLeft} alt="back" className="w-4" /> */}
                 {/* &larr; */}
               </button>

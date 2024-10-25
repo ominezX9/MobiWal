@@ -32,20 +32,20 @@ export default function AmountCard() {
             </div>
 
             <div className="quickkactions flex justify-around p-10 px-20">
-                <Link to="transfer" className="quickaction">
+                <Link to="../transfer" className="quickaction">
                     <img src={Transfer} />
                     <span>Transfer</span>
                 </Link>
-                <Link to="Topup" className="quickaction">
+                <Link to="../topup" className="quickaction">
                     <img src={Topup} />
                     <span>Topup</span>
                 </Link>
-                <Link to="bills" className="quickaction">
+                <Link to="../bills" className="quickaction">
                     <img src={Bills} />
 
                     <span>Bills</span>
                 </Link>
-                <Link to="more" className="quickaction">
+                <Link to="../more" className="quickaction">
                     <img src={More} />
 
                     <span>More</span>

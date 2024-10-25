@@ -1,8 +1,98 @@
 @layer {
-    .quickaction {
-      @apply flex flex-col items-center justify-center;
-    }
-    .quickaction span{
-        @apply text-sm text-gray;
-    }
+  .quickaction {
+    @apply flex flex-col items-center justify-center;
+  }
+
+  .quickaction span {
+    @apply text-sm text-gray;
+  }
+
+  /* Input Styling */
+  .input {
+    @apply w-full px-4 py-3 text-sm text-gray bg-gray border border-gray rounded focus:border-orange focus:outline-none transition-colors;
+  }
+
+  /* Margin Spacing */
+  .mb-4 {
+    @apply mb-4;
+  }
+
+  .mb-2 {
+    @apply mb-2;
+  }
+
+  .mb-10 {
+    @apply mb-10;
+  }
+
+  /* Text Sizes */
+  .text-xs {
+    @apply text-xs;
+  }
+
+  .text-base {
+    @apply text-base;
+  }
+
+  /* Text Colors */
+  .text-active {
+    @apply text-info;
+  }
+
+  .text-active:hover {
+    @apply text-info underline;
+  }
+
+  /* Font Weights */
+  .font-semibold {
+    @apply font-semibold;
+  }
+
+  .font-normal {
+    @apply font-normal;
+  }
+
+  /* Block Display */
+  .block {
+    @apply block;
+  }
+
+  /* Label Text */
+  .label-text {
+    @apply mb-2 block text-sm text-gray;
+  }
+
+  /* Error Message Styling */
+  .error-message {
+    @apply text-xs text-orange;
+  }
+
+  /* Button Styling */
+  button {
+    @apply w-full py-3 text-center text-white font-semibold bg-orange rounded transition-colors;
+  }
+
+  button:hover {
+    @apply bg-orange;
+  }
+
+  button:disabled {
+    @apply bg-orange cursor-not-allowed;
+  }
+
+  /* Show/Hide Password Toggle */
+  .password-toggle {
+    @apply absolute right-2 bottom-1/3 text-xs font-bold text-info cursor-pointer;
+  }
+
+  /* Link Styling */
+  a {
+    @apply text-info font-semibold no-underline;
+  }
+
+  a:hover {
+    @apply underline;
+  }
+
+
 }

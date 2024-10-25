@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatNumber } from '@utils/numberFormatter';
 import { Link } from 'react-router-dom';
 import { useViewMyTransactionsQuery } from '@api/transactionApi';
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key } from 'react';
 
 export default function TransactionList() {
     const userPass = useAppSelector((store) => store.userDetails.password);
@@ -25,7 +26,7 @@ export default function TransactionList() {
                     <div>Loading...</div>
                 ) : (
                     <div className='flex flex-col gap-2'>
-                        {transactions?.map((transaction, i) => (
+                        {transactions?.map((transaction: { type: string; amount: number; date: string | number | Date; recipientId: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
                             <Link key={i} className='shadow rounded-md p-4 cursor-pointer'>
                                 {/* "id": "1",
                                 "userId": 1,

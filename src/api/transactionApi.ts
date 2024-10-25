@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "constants.ts";
+import { AnyObject } from "yup";
 
 type Values = {
     "id": "1",
@@ -23,6 +24,22 @@ const transactionApi = createApi({
             }),
             providesTags: ["TRANS"],
         }),
+        makeATransfer: builder.mutation<void, { userId: string; recipientId: string; amount: number }>({
+            query: (args) => ({
+                url: `/transactions`,
+                method: "POST",
+                body: JSON.stringify({
+                    userId: args.userId,
+                    recipientId: args.recipientId,
+                    amount: args.amount
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }),
+            invalidatesTags: ["TRANS"],
+        })
+        
        
     })
 })
