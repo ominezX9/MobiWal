@@ -1,15 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "constants.ts";
-import { AnyObject } from "yup";
 
-type Values = {
-    "id": "1",
-    "userId": 1,
-    "recipientId": 2,
-    "amount": 200,
-    "date": "2024-10-24T10:00:00",
-    "type": "transfer"
-};
+
 
 const transactionApi = createApi({
     reducerPath: "transactionApi",
