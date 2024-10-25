@@ -1,0 +1,8 @@
+@layer {
+    .quickaction {
+      @apply flex flex-col items-center justify-center;
+    }
+    .quickaction span{
+        @apply text-sm text-gray;
+    }
+}
