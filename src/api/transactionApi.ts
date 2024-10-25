@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "constants.ts";
+import { AnyObject } from "types/anyObejct";
 
 
 
@@ -10,7 +11,7 @@ const transactionApi = createApi({
     }),
     tagTypes: ["TRANS"],
     endpoints: (builder) => ({
-        viewMyTransactions: builder.query<void, string>({
+        viewMyTransactions: builder.query<AnyObject, string>({
             query: (userId) => ({
                 url: `/transactions?userId=${userId}`,
             }),
