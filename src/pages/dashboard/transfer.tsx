@@ -134,7 +134,7 @@ export default function Transfer() {
                 )
                 : (
                 <SwipeButton onClick={handleSendMoney}>
-                    Swipe to Send
+                    {isPaying ? "paying ... " : "Swipe to Send" }
                 </SwipeButton>
                 )}
             </div>
