@@ -11,9 +11,9 @@ export default function DefaultLayout() {
     return (
         <div className="flex overflow-hidden h-full w-full">
             <MenuBar />
-            <div className="w-full bg-gray">
+            <div className="w-full">
                 <Header/>
-                <main className="bg-gray">
+                <main className="bg-fume">
                     <Suspense
                     fallback={
                         <div className="h-screen flex items-center justify-center">

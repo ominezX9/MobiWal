@@ -20,7 +20,7 @@ export default function MenuBar() {
     
     // alert(deviceType)
   return (
-    <div className={`absolute bg-white ${deviceType === "phone" ? "bottom-0 left-0 right-0" : "left-0 bottom-0 top-0" }`}>
+    <div className={`absolute bg-white z-[20] ${deviceType === "phone" ? "bottom-0 left-0 right-0" : "left-0 bottom-0 top-0" }`}>
       {
         deviceType === "phone" ? (
           <div>
@@ -42,7 +42,7 @@ export default function MenuBar() {
               <ul className="flex flex-col gap-5 p-5 shadow h-full">
                 {
                   options.map((item, i ) => (
-                      <Link className={`text-gray hover:text-secondary border-2 border-transparent hover:border-secondary transition-all h-[80px] w-[80px] flex-none flex items-center justify-center rounded-lg p-3 ${selected == i ? "!text-secondary !border-secondary" : ""}`} key={i} to={`/${item}`}>
+                      <Link className={`text-gray hover:text-secondary border-2 border-transparent hover:border-secondary transition-all h-[50px] w-[50px] flex-none flex items-center justify-center rounded-lg p-3 ${selected == i ? "!text-secondary !border-secondary" : ""}`} key={i} to={`/${item}`}>
                        {svgs[i]}
                       </Link>
                   ))

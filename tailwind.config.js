@@ -14,6 +14,7 @@ export default {
         green: '#22B07D',
         gray: '#979797',
         smoke: '#E5E5E5',
+        fume: "#F3F3F8",
         gold: '#FFBF47',
       },
     },

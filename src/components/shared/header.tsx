@@ -10,7 +10,7 @@ export default function Header() {
     )
 
     return (
-        <header className='bg-white p-10 w-full'>
+        <header className=' p-10 w-full absolute top-0  left-0 right-0 z-[10]'>
             <div className="flex title outline-none items-center justify-center ">
 
             {showBackButton && (
