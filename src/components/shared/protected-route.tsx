@@ -1,65 +1,65 @@
-
-
 import { useAppDispatch, useAppSelector } from "@hooks/index";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useCallback, useEffect } from "react";
-import { useLazyGetUserQuery } from "@api/usersApi";
+import { useLazyGetUserQuery } from "@api/usersApi"; // Assuming this is from RTK Query
 import { updateUser } from "store/action";
 
-
 export default function ProtectedRoute() {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
     const { pathname } = useLocation();
-    const { password } = useAppSelector((store) => store.userDetails)
+    const { password } = useAppSelector((store) => store.userDetails); // Select user password from Redux
     const navigate = useNavigate();
 
     const [getMyDetails, { isLoading, isError }] = useLazyGetUserQuery({
         refetchOnReconnect: true,
     });
 
-    const initiateApp = useCallback(async function (password: string){
-        try{
-            // If the user is not authenticated, redirect to login page
+    // Function to initiate the app, checking if the user is authenticated
+    const initiateApp = useCallback(async (password: string) => {
+        try {
+            // If user is not authenticated, redirect to login
             if (!password) {
                 navigate("/login");
             } else {
-                // If the user is authenticated, fetch their details
-                const res = await getMyDetails(password);
-                dispatch(
-                    updateUser({
-                        id: res.data?.id || "",
-                        name: res.data?.name || "",
-                        email: res.data?.email || "",
-                        phone: res.data?.phone || "",
-                        balance: res.data?.balance || 0,
-                        password
-                    })
-                )
+                // Fetch user details if authenticated
+                const res = await getMyDetails(password); 
+                if (res?.data) {
+                    // Dispatch the action to update user details in the Redux store
+                    dispatch(
+                        updateUser({
+                            password,
+                            id: res.data?.id || "",
+                            name: res.data?.name || "",
+                            email: res.data?.email || "",
+                            phone: res.data?.phone || "",
+                            balance: res.data?.balance || 0,
+                        })
+                    );
+                }
             }
         } catch (err) {
-            !password && navigate("/login");
+            // Handle the error and navigate to login if necessary
+            if (!password) navigate("/login");
         }
-    }, [])
-    const pathsAllowedWithoutAuth = new  Set([
-        "/update-password",
-    ])
+    }, [dispatch, navigate, getMyDetails]);
+
+    const pathsAllowedWithoutAuth = new Set(["/update-password"]);
 
     useEffect(() => {
         if (!password && !pathsAllowedWithoutAuth.has(pathname)) {
-          navigate("/login");
+            navigate("/login");
         } else {
-          initiateApp(password || "");
+            initiateApp(password || "");
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [password, initiateApp]);
+    }, [password, pathname, initiateApp, navigate]);
 
     if (isLoading) {
-        return <p>loading ... </p>;
+        return <p>Loading...</p>;
     }
+
     if (isError) {
-        return <p>404</p>;
+        return <p>Error: Could not fetch user details.</p>;
     }
-    return (
-        <Outlet/>
-    )
+
+    return <Outlet />;
 }
