@@ -1,24 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { PayloadAction } from "@reduxjs/toolkit";
-
+import { AnyObject } from "types/anyObejct";
 
 const nullUser = {
     "id": "",
     "name": "",
     "email": "",
     "phone": "",
-    "balance": "",
-    "password": localStorage.getItem("token"),
+    "balance": 0,
+    "password": localStorage.getItem("pasword") || "",
 }
 
 const userDetails = createSlice({
     name: 'userDetails',
     initialState: nullUser,
     reducers: {
-        getUserDetails(_state, action: PayloadAction<typeof nullUser>){
-            return action.payload;
-        },
         updateUser(state, action: PayloadAction<typeof nullUser>){
             state.id = action.payload.id;
             state.name = action.payload.name;
@@ -29,11 +26,18 @@ const userDetails = createSlice({
         },
         logoutUser: (state) => {
             localStorage.clear();
-            state = nullUser;
-            return state;
+            // Instead of reassigning the state, we should reset each property
+            state.id = "";
+            state.name = "";
+            state.email = "";
+            state.phone = "";
+            state.balance = 0;
+            state.password = "";
         }
     },
 })
 
-export const { getUserDetails, updateUser, logoutUser } = userDetails.actions;
 export default userDetails.reducer;
+export const getUserDetails = (state: { userDetails: AnyObject }) =>
+    state.userDetails;
+export const { updateUser, logoutUser } = userDetails.actions;
