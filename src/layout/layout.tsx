@@ -9,11 +9,11 @@ import Header from "@components/shared/header";
 
 export default function DefaultLayout() {
     return (
-        <div className="flex overflow-hidden">
+        <div className="flex overflow-hidden h-full w-full">
             <MenuBar />
-            <div>
+            <div className="w-full bg-gray">
                 <Header/>
-                <main>
+                <main className="bg-gray">
                     <Suspense
                     fallback={
                         <div className="h-screen flex items-center justify-center">
