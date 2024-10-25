@@ -42,7 +42,11 @@ export default function MenuBar() {
               <ul className="flex flex-col gap-5 p-5 shadow h-full">
                 {
                   options.map((item, i ) => (
-                      <Link className={`text-gray hover:text-secondary border-2 border-transparent hover:border-secondary transition-all h-[50px] w-[50px] flex-none flex items-center justify-center rounded-lg p-3 ${selected == i ? "!text-secondary !border-secondary" : ""}`} key={i} to={`/${item}`}>
+                      <Link 
+                        className={`text-gray hover:text-secondary border-2 border-transparent hover:border-secondary transition-all h-[50px] w-[50px] flex-none flex items-center justify-center rounded-lg p-3 ${selected == i ? "!text-secondary !border-secondary" : ""}`} 
+                        key={i} 
+                        to={`/${item}`}
+                        onClick={() => {setSelected(i)}}>
                        {svgs[i]}
                       </Link>
                   ))

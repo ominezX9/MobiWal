@@ -1,16 +1,12 @@
 import * as React from "react";
 import * as Yup from "yup";
-import { updateUser } from "store/action";
-import { Link } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useSignupMutation } from "@api/authApi";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "@hooks/redux-hooks";
+import { toast } from "sonner";
 
 export default function Signup(){
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const user = useAppSelector((store) => store.userDetails);
 
     const initialValues = {
         email: '',
@@ -41,8 +37,8 @@ export default function Signup(){
           const userData: any [] = [];
           if(userData?.length > 0){
             console.log(user);
-            sessionStorage.setItem("user", JSON.stringify(user));
             navigate("../login");
+            toast.success("user created successfully");
           }
           
         } catch (error) {

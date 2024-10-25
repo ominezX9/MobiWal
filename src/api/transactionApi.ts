@@ -41,4 +41,5 @@ export default transactionApi;
 export const {
     useViewMyTransactionsQuery,
     useLazyViewMyTransactionsQuery,
+    useMakeATransferMutation,
 } = transactionApi

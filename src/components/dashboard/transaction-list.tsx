@@ -1,6 +1,4 @@
-import { useAppSelector } from '@hooks/redux-hooks';
 import { SessionStorageService } from 'services/SessionStorageService';
-import { useNavigate } from 'react-router-dom';
 import { formatNumber } from '@utils/numberFormatter';
 import { Link } from 'react-router-dom';
 import { useViewMyTransactionsQuery } from '@api/transactionApi';

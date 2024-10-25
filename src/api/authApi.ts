@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "constants.ts";
+import { AnyObject } from "types/anyObejct";
 
 type LoginFormValues = {
     email: string;
@@ -13,7 +14,7 @@ const authApi = createApi({
     }),
     tagTypes: ["AUTH"],
     endpoints: (builder) => ({
-        signup: builder.mutation<void, LoginFormValues>({
+        signup: builder.mutation<AnyObject, LoginFormValues>({
             query: ({ email, password }) => ({
                 url: "/users",
                 method: "POST",
@@ -24,7 +25,7 @@ const authApi = createApi({
             }),
             invalidatesTags: ["AUTH"],
         }),
-        login: builder.query<void, LoginFormValues>({
+        login: builder.query<AnyObject, LoginFormValues>({
             query: ({ email, password }) => ({
                 url: `/users?email=${email}&password=${password}`,
             }),

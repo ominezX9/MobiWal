@@ -2,37 +2,31 @@ import Header from '@components/shared/header';
 import HeaderTitle from '@components/shared/header-title';
 import { formatNumber } from '@utils/numberFormatter';
 import { Formik, Field, ErrorMessage } from 'formik';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Form } from 'react-router-dom';
 import { SessionStorageService } from 'services/SessionStorageService';
 import { toast } from 'sonner';
 import * as Yup from "yup";
+import { useMakeATransferMutation } from '@api/transactionApi';
+import { AnyObject } from 'types/anyObejct';
 
 
-const SwipeButton = ({ onClick, children }) => {
+interface SwipeButtonProps {
+    onClick: (values: { userId: string; recipientId: string; amount: number; }) => Promise<void>; // Update this line
+    children: React.ReactNode;
+  }
+  
+  // SwipeButton Component
+  const SwipeButton: React.FC<SwipeButtonProps> = ({ onClick, children }) => {
     return (
-        <button
-            onClick={onClick}
-            className="w-full mt-5 bg-purple-600 text-white py-4 rounded-full text-lg shadow-lg hover:bg-purple-700 active:bg-purple-800"
-        >
-            {children}
-        </button>
+      <button
+        onClick={() => onClick({ userId: "defaultUserId", recipientId: "defaultRecipientId", amount: 0 })} // Adjust default values as necessary
+        className="w-full mt-5 bg-purple-600 text-white py-4 rounded-full text-lg shadow-lg hover:bg-purple-700 active:bg-purple-800"
+      >
+        {children}
+      </button>
     );
-};
-
-
-
-const NumberInput = ({ value, onChange, placeholder }) => {
-    return (
-        <input
-            type="number"
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
-            className="w-full py-4 px-4 text-center text-2xl text-gray-900 rounded-xl border-gray outline-none focus:ring-2 focus:ring-purple-500 mb-5"
-        />
-    );
-};
+  };
 
 
 
@@ -44,12 +38,13 @@ export default function Transfer() {
     const [acc, setAccount] = useState('');
 
     const initialValues = {
-        acc: '',
-        amount: '',
+        userId : '',
+        recipientId: '',
+        amount: 0,
     }
 
     const validationSchema = Yup.object().shape({
-        acc: Yup.number()
+        recipientId: Yup.number()
             .required("Account Number is required")
             .max(11, "Account Number must be ten characters long"),
         amount: Yup.number()
@@ -58,17 +53,18 @@ export default function Transfer() {
           .min(1, "Amount must be at least 1")
     });
 
+    const [pay, {isLoading: isPaying}] = useMakeATransferMutation();
     
     const handleSendMoney =  async (values: typeof initialValues) => {
         try {
         console.log(`Sending ${amount} money`);
 
-          const response = await login(values).unwrap();
-          if(response && response.length > 0) {
+          const response = await pay(values).unwrap();
+          if(Array.isArray(response)) {
             const [userData] = response;
             toast.success(userData)
           }else{
-          toast.error(response)
+          toast.error("Could not send money")
         }
           
         } catch (error) {
@@ -95,11 +91,11 @@ export default function Transfer() {
                     <Field
                         as="input"
                         type="number"
-                        name="acc"
+                        name=" recepientId"
                         className="w-full py-4 px-4 text-center text-2xl text-gray-900 rounded-xl border-gray outline-none focus:ring-2 focus:ring-purple-500 mb-5"
                         placeholder="Enter Account Number"
                         autoComplete="false"
-                        onChange={(e) => setAccount(e.target.value)}
+                        onChange={(e :AnyObject) => setAccount(e.target.value)}
                         value={acc}
 
                     />
@@ -118,7 +114,7 @@ export default function Transfer() {
                         className="w-full py-4 px-4 text-center text-2xl text-gray-900 rounded-xl border-gray outline-none focus:ring-2 focus:ring-purple-500 mb-5"
                         placeholder="Enter amount"
                         autoComplete="false"
-                        onChange={(e) => setAmount(e.target.value)}
+                        onChange={(e : AnyObject) => setAmount(e.target.value)}
                         value={amount}
                     />
                     <ErrorMessage
