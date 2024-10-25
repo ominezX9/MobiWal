@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useLazyLoginQuery } from "@api/authApi";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "@hooks/redux-hooks";
+import { useAppDispatch } from "@hooks/redux-hooks";
 
 export default function Login(){
     const dispatch = useAppDispatch();
