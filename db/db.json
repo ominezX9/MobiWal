@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "John Doe",
       "email": "john@example.com",
       "phone": "1234567890",
@@ -9,17 +9,27 @@
       "password": "hashedPassword123"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Jane Smith",
       "email": "jane@example.com",
       "phone": "0987654321",
       "balance": 500,
       "password": "hashedPassword456"
+    },
+    {
+      "id": "f76a",
+      "email": "ominezx9@gmail.com",
+      "password": "big ratbig rat"
+    },
+    {
+      "id": "e08b",
+      "email": "winstreakdavid@gmail.com",
+      "password": "wilduser123"
     }
   ],
   "transactions": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "recipientId": 2,
       "amount": 200,
@@ -27,7 +37,7 @@
       "type": "transfer"
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 1,
       "amount": 50,
       "billId": 1,
@@ -37,13 +47,13 @@
   ],
   "bills": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Electricity",
       "amount": 50,
       "dueDate": "2024-10-31"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Water",
       "amount": 30,
       "dueDate": "2024-11-05"
@@ -51,7 +61,7 @@
   ],
   "airtimeTopUps": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "phone": "1234567890",
       "amount": 100,
