@@ -16,7 +16,7 @@ export default function AmountCard() {
 
     if (userData.password === userPass) {
         // just chill
-        navigate('/dashboard');
+        // navigate('/dashboard');
     } else {
         navigate('/logout')
     }
@@ -24,7 +24,7 @@ export default function AmountCard() {
 
     // alert(JSON.stringify(user))
     return (
-        <div>
+        <div className="bg-fume pb-14">
             {JSON.stringify(userPass) + JSON.stringify(userData)}
             <div className="amountblock flex flex-col items-center gap-3 p-20 py-10 pt-[100px]">
                 <h2 className="text-gray text-md">Your Balance</h2>
