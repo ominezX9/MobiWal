@@ -10,8 +10,9 @@ export default function Header() {
     )
 
     return (
-        <header>
+        <header className='bg-white p-10 w-full'>
             <div className="flex title outline-none items-center justify-center ">
+
             {showBackButton && (
               <button
                 onClick={() =>
@@ -25,7 +26,7 @@ export default function Header() {
             <h3 className="sm:ml-0 ml-2 capitalize text-primary font-extrabold text-lg lg:text-2xl">
               {headerTitle}
             </h3>
-          </div>
+            </div>
         </header>
     )
 }
