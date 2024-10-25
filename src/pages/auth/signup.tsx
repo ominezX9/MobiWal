@@ -3,11 +3,11 @@ import * as Yup from "yup";
 import { updateUser } from "store/action";
 import { Link } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useLazyLoginQuery } from "@api/authApi";
+import { useSignupMutation } from "@api/authApi";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@hooks/redux-hooks";
 
-export default function Login(){
+export default function Signup(){
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const user = useAppSelector((store) => store.userDetails);
@@ -17,7 +17,7 @@ export default function Login(){
         password: '',
     }
 
-    const [login, {isLoading}] = useLazyLoginQuery();
+    const [signup, {isLoading}] = useSignupMutation();
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -37,17 +37,13 @@ export default function Login(){
 
     const handleFormSubmission = async (values: typeof initialValues) => {
         try {
-          const response = await login(values).unwrap();
-          if(response && response.length > 0) {
-            const [userData] = response;
-
-            dispatch(updateUser(userData));
-            sessionStorage.setItem('user', JSON.stringify(userData));
-            navigate("/dashboard")
-          }else{
-            navigate("/signup")
+          const user = await signup(values).unwrap();
+          const userData: any [] = [];
+          if(userData?.length > 0){
+            console.log(user);
+            sessionStorage.setItem("user", JSON.stringify(user));
+            navigate("../login");
           }
-
           
         } catch (error) {
           console.log(error);
@@ -113,22 +109,12 @@ export default function Login(){
                 />
               </div>
 
-              <div className="mb-10 text-base">
-                <span className="text-[#333]">Forgot your Password?</span>{" "}
-                <Link
-                  className="text-active font-semibold"
-                  to="/forgot-password"
-                >
-                  Reset
-                </Link>
-              </div>
-
               <div className="mb-4">
                 <button
                   className="w-full text-center flex items-center justify-center font-semibold !py-3 -mt-2"
                   type="submit"
                 >
-                  {isLoading ? "loading" : "Log In"}
+                  {isLoading ? "loading" : "Sign up"}
                 </button>
               </div>
             </Form>
