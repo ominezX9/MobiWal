@@ -10,7 +10,7 @@ const usersApi = createApi({
     tagTypes: ["USER"],
     endpoints: builder => ({
         getUser: builder.query<UserDetailsResponse, string>({
-            query: (id) => `users/${id}`,
+            query: (password) => `users?password=${password}`,
             providesTags: ["USER"]
         }),
     }),

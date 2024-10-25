@@ -13,7 +13,7 @@ const authApi = createApi({
     }),
     tagTypes: ["AUTH"],
     endpoints: (builder) => ({
-        signin: builder.mutation<void, LoginFormValues>({
+        signup: builder.mutation<void, LoginFormValues>({
             query: ({ email, password }) => ({
                 url: "/users",
                 method: "POST",
@@ -37,5 +37,6 @@ export default authApi;
 export const {
     useLoginQuery,
     useLazyLoginQuery,
+    useSignupMutation,
 
 } = authApi
