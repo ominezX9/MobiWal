@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/redux-hooks";
 export default function Login(){
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const user = useAppSelector((store) => store.userDetails);
+    // const user = useAppSelector((store) => store.userDetails);
 
     const initialValues = {
         email: '',
