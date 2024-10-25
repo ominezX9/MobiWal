@@ -4,18 +4,21 @@ import headerControls from "./slices/headerControls";
 
 import {
     authApi,
-    usersApi
+    usersApi,
+    transactionApi
 } from "api";
 
 const middleware = [
     authApi.middleware,
     usersApi.middleware,
+    transactionApi.middleware,
 ]
 
 export const store = configureStore({
     reducer: {
         [authApi.reducerPath]: authApi.reducer,
         [usersApi.reducerPath]: usersApi.reducer,
+        [transactionApi.reducerPath]: transactionApi.reducer,
         "userDetails" : userDetails,
         "headerControls": headerControls
     },

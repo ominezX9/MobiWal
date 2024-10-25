@@ -4,6 +4,6 @@ const NumberFormatter = new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 2,
 });
 
-export const formattedNumber = (val: number) => { 
+export const formatNumber = (val: number) => { 
     return NumberFormatter.format(val)
 }
