@@ -24,7 +24,7 @@ export default function MenuBar() {
       {
         deviceType === "phone" ? (
           <div>
-            <ul className="flex justify-between align-center py-10 px-20">
+            <ul className="flex justify-between align-center py-5 px-20">
               {
                 options.map((item, i ) => (
                     <Link 
