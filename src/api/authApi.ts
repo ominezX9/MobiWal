@@ -2,6 +2,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "constants.ts";
 import { AnyObject } from "types/anyObejct";
 
+type SignupFormValues = {
+    name: string
+    email: string;
+    password: string;
+    acc_no: string;
+    balance: number;
+};
 type LoginFormValues = {
     email: string;
     password: string;
@@ -14,11 +21,11 @@ const authApi = createApi({
     }),
     tagTypes: ["AUTH"],
     endpoints: (builder) => ({
-        signup: builder.mutation<AnyObject, LoginFormValues>({
-            query: ({ email, password }) => ({
+        signup: builder.mutation<AnyObject, SignupFormValues>({
+            query: ({ name, email, password, acc_no, balance }) => ({
                 url: "/users",
                 method: "POST",
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ name, email, password, acc_no, balance }),
                 headers: {
                     "Content-Type": "application/json",
                 },
