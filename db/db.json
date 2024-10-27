@@ -4,7 +4,7 @@
       "id": "1",
       "name": "John Doe",
       "email": "john@example.com",
-      "phone": "1234567890",
+      "acc_no": "1234567890",
       "balance": 850,
       "password": "hashedPassword123"
     },
@@ -12,15 +12,15 @@
       "id": "2",
       "name": "Jane Smith",
       "email": "jane@example.com",
-      "phone": "0987654321",
-      "balance": 700, 
+      "acc_no": "0987654321",
+      "balance": 700,
       "password": "hashedPassword456"
     },
     {
       "id": "f76a",
       "name": "Olu Ominex",
       "email": "ominezx9@gmail.com",
-      "phone": "08123456789",
+      "acc_no": "08123456789",
       "balance": 1200,
       "password": "big ratbig rat"
     },
@@ -28,7 +28,7 @@
       "id": "e08b",
       "name": "David Win",
       "email": "winstreakdavid@gmail.com",
-      "phone": "08098765432",
+      "acc_no": "08098765432",
       "balance": 1500,
       "password": "wilduser123"
     }
@@ -73,6 +73,84 @@
       "amount": 50,
       "date": "2024-10-22T11:30:00",
       "type": "transfer"
+    },
+    {
+      "id": "6c02",
+      "userId": "defaultUserId",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
+    },
+    {
+      "id": "1267",
+      "userId": "defaultUserId",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
+    },
+    {
+      "id": "b5e8",
+      "userId": "defaultUserId",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
+    },
+    {
+      "id": "f51e",
+      "userId": "defaultUserId",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
+    },
+    {
+      "id": "b7e9",
+      "userId": "e08b",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
+    },
+    {
+      "id": "3661",
+      "userId": "e08b",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
+    },
+    {
+      "id": "f465",
+      "userId": "e08b",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
+    },
+    {
+      "id": "7447",
+      "userId": "e08b",
+      "recipientId": "1023846190",
+      "amount": 0
+    },
+    {
+      "id": "a78a",
+      "userId": "e08b",
+      "recipientId": "1029384191",
+      "amount": 0
+    },
+    {
+      "id": "d005",
+      "userId": "defaultUserId",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
+    },
+    {
+      "id": "c44b",
+      "userId": "defaultUserId",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
+    },
+    {
+      "id": "a497",
+      "userId": "defaultUserId",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
+    },
+    {
+      "id": "2010",
+      "userId": "defaultUserId",
+      "recipientId": "defaultRecipientId",
+      "amount": 0
     }
   ],
   "bills": [
