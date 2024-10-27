@@ -29,6 +29,8 @@ export default function AmountCard() {
             <div className="amountblock flex flex-col items-center gap-3 p-20 py-10 pt-[100px]">
                 <h2 className="text-gray text-md">Your Balance</h2>
                 <p className='text-6xl'>N {formatNumber(userData.balance)}</p>
+                <h2 className="rounded-md bg-smoke py-1 px-3 text-gray">Acc No: {userData.acc_no}</h2>
+                <h3></h3>
             </div>
 
             <div className="quickkactions flex justify-around p-10 px-20">
