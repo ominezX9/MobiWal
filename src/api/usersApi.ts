@@ -18,7 +18,7 @@ const usersApi = createApi({
         updateUserAmountById: builder.mutation<AnyObject, {id: string, amount: number}>({
             query: (args) => ({
                 url: `/users/${args.id}`,
-                method: "POST",
+                method: "PATCH",
                 body: JSON.stringify({
                     amount: args.amount
                 }),
@@ -26,12 +26,13 @@ const usersApi = createApi({
                     "Content-Type": "application/json",
                 },
 
-            })
+            }),
+            invalidatesTags: ["USER"]
         }),
         updateUserAmountByAcc: builder.mutation<AnyObject, {acc_no: string, amount: number}>({
             query: (args) => ({
                 url: `/users?acc_no=${args.acc_no}`,
-                method: "POST",
+                method: "PATCH",
                 body: JSON.stringify({
                     amount: args.amount
                 }),
@@ -39,7 +40,8 @@ const usersApi = createApi({
                     "Content-Type": "application/json",
                 },
 
-            })
+            }),
+            invalidatesTags: ["USER"]
         })
     }),
 })
