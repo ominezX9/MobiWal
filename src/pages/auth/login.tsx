@@ -56,12 +56,14 @@ export default function Login(){
 
     return(
         <>
+            
             <Formik
             onSubmit={handleFormSubmission}
             validationSchema={validationSchema}
             initialValues={initialValues}
           >
             <Form>
+              <h1 className="header">MobiWal</h1>
               <div className="mb-4">
                 <label className="mb-2 block font-normal text-[#333]">
                   Enter your email address
@@ -114,12 +116,12 @@ export default function Login(){
               </div>
 
               <div className="mb-10 text-base">
-                <span className="text-[#333]">Forgot your Password?</span>{" "}
+                <span className="text-[#333]">New here?</span>{" "}
                 <Link
                   className="text-active font-semibold"
-                  to="/forgot-password"
+                  to="/signup"
                 >
-                  Reset
+                  Create an account
                 </Link>
               </div>
 
