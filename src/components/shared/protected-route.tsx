@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, startTransition } from "react";
+import { useCallback, useEffect, startTransition } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/index"; 
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useLazyGetUserQuery } from "@api/usersApi"; 
