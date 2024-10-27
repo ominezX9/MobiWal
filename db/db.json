@@ -31,6 +31,30 @@
       "acc_no": "08098765432",
       "balance": 1500,
       "password": "wilduser123"
+    },
+    {
+      "id": "1d80",
+      "name": "Maxwell James",
+      "email": "olivermichael@gmail.com",
+      "password": "wilduser123",
+      "acc_no": "4350295481",
+      "balance": 0
+    },
+    {
+      "id": "3647",
+      "name": "Juniper Jackson",
+      "email": "juniper@gmail.com",
+      "password": "wildMonkey123",
+      "acc_no": "4350295481",
+      "balance": 0
+    },
+    {
+      "id": "6502",
+      "name": "Mickel Alex",
+      "email": "mikkyr@gmail.com",
+      "password": "wildMonkey123",
+      "acc_no": "4350295481",
+      "balance": 0
     }
   ],
   "transactions": [
