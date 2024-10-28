@@ -13,7 +13,7 @@ export default function TransactionList() {
     });
     
     const filteredTransactions = transactions?.filter((transaction: { userId: any; recipientId: any; }) => 
-        transaction.userId ===  userData.id || transaction.recipientId === userData.acc_no
+        (transaction.recipientId?.toString() === userData.acc_no) || (transaction.userId ===  userData.id)  
     );
     const sortedTransactions = filteredTransactions?.slice().sort((a: { date: string | number | Date; }, b: { date: string | number | Date; }) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
@@ -34,7 +34,9 @@ export default function TransactionList() {
                 ) : (
                     <div className=''>
                         <div className="w-full flex flex-col gap-2 overflow-hidden overflow-y-scroll max-h-[400px]">
-                        {sortedTransactions?.map((transaction: { type: string; amount: number; date: string | number | Date; recipientId: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
+                        {sortedTransactions?.map((transaction: {
+                            userId: any; type: string; amount: number; date: string | number | Date; recipientId: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; 
+}, i: Key | null | undefined) => (
                             <Link key={i} to="" className='shadow rounded-md p-4 cursor-pointer'>
                                 {/* "id": "1",
                                 "userId": 1,
@@ -42,8 +44,8 @@ export default function TransactionList() {
                                 "amount": 200,
                                 "date": "2024-10-24T10:00:00",
                                 "type": "transfer" */}
-                                <div className='flex justify-between font-bold'> 
-                                    <div >{transaction.type?.toUpperCase()}</div>
+                                <div className={`${transaction.recipientId?.toString() === userData.acc_no ? "text-green" : "text-[red]"} flex justify-between font-bold`}> 
+                                    <div>{transaction.type?.toUpperCase()}</div>
                                     <div>{formatNumber(transaction.amount)}</div>
                                 </div>
                                 <div className="flex justify-between text-gray">
