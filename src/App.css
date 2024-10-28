@@ -9,7 +9,7 @@
 
   .header {
     @apply !font-bold !text-3xl !mb-10 text-center;
-    
+
   }
 
 }
@@ -142,4 +142,18 @@
   a:hover {
     text-decoration: underline;
   }
+
+  /* Chrome, Safari, Edge, Opera */
+  .no-arrows::-webkit-outer-spin-button,
+  .no-arrows::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  .no-arrows[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
 }

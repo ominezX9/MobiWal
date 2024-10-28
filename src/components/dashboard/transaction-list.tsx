@@ -23,7 +23,8 @@ export default function TransactionList() {
                 isLoading ? (
                     <div>Loading...</div>
                 ) : (
-                    <div className='flex flex-col gap-2'>
+                    <div className='overflow-hidden overflow-y'>
+                        <div className="w-full flex flex-col gap-2">
                         {transactions?.map((transaction: { type: string; amount: number; date: string | number | Date; recipientId: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
                             <Link key={i} to="" className='shadow rounded-md p-4 cursor-pointer'>
                                 {/* "id": "1",
@@ -45,6 +46,8 @@ export default function TransactionList() {
                                 
                             </Link>
                         ))}
+                        </div>
+                       
 
                     </div>
                 )

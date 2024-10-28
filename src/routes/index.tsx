@@ -12,6 +12,8 @@ import Signup from "@pages/auth/signup";
 
 // pages
 const Login = lazy(() => import("@pages/auth/login"))
+const Logout = lazy(() => import("@pages/auth/logout"));
+
 const Transfer = lazy(() => import("@pages/dashboard/transfer"));
 
 const appRoutes = (
@@ -21,6 +23,7 @@ const appRoutes = (
     >
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
+        <Route path="/logout" element={<Logout/>}/>
         
         <Route
             element={

@@ -14,13 +14,17 @@ const usersApi = createApi({
             query: (password) => `users?password=${password}`,
             providesTags: ["USER"]
         }),
+        getUserByAcc: builder.query<UserDetailsResponse, string>({
+            query: (acc_no) => `users?acc_no=${acc_no}`,
+            providesTags: ["USER"]
+        }),
         // updateuser
         updateUserAmountById: builder.mutation<AnyObject, {id: string, amount: number}>({
             query: (args) => ({
                 url: `/users/${args.id}`,
                 method: "PATCH",
                 body: JSON.stringify({
-                    amount: args.amount
+                    balance: args.amount
                 }),
                 headers: {
                     "Content-Type": "application/json",
@@ -34,7 +38,7 @@ const usersApi = createApi({
                 url: `/users?acc_no=${args.acc_no}`,
                 method: "PATCH",
                 body: JSON.stringify({
-                    amount: args.amount
+                    balance: args.amount
                 }),
                 headers: {
                     "Content-Type": "application/json",
@@ -48,6 +52,8 @@ const usersApi = createApi({
 
 export default usersApi;
 export const {  
+    useGetUserByAccQuery,
+    useLazyGetUserByAccQuery,
     useGetUserQuery,
     useLazyGetUserQuery,
     useUpdateUserAmountByIdMutation,

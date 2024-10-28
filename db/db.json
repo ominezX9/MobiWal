@@ -29,15 +29,16 @@
       "name": "David Win",
       "email": "winstreakdavid@gmail.com",
       "acc_no": "08098765432",
-      "balance": 1500,
-      "password": "wilduser123"
+      "balance": 1450,
+      "password": "wilduser123",
+      "amount": 1300
     },
     {
       "id": "1d80",
       "name": "Maxwell James",
       "email": "olivermichael@gmail.com",
       "password": "wilduser123",
-      "acc_no": "4350295481",
+      "acc_no": "4350115481",
       "balance": 0
     },
     {
@@ -45,7 +46,7 @@
       "name": "Juniper Jackson",
       "email": "juniper@gmail.com",
       "password": "wildMonkey123",
-      "acc_no": "4350295481",
+      "acc_no": "4350295483",
       "balance": 0
     },
     {
@@ -53,8 +54,8 @@
       "name": "Mickel Alex",
       "email": "mikkyr@gmail.com",
       "password": "wildMonkey123",
-      "acc_no": "4350295481",
-      "balance": 0
+      "acc_no": "4350205481",
+      "balance": 50
     }
   ],
   "transactions": [
@@ -175,6 +176,30 @@
       "userId": "defaultUserId",
       "recipientId": "defaultRecipientId",
       "amount": 0
+    },
+    {
+      "id": "8759",
+      "userId": "e08b",
+      "recipientId": "1234567890",
+      "amount": 0
+    },
+    {
+      "id": "fa4b",
+      "userId": "e08b",
+      "recipientId": "1234567890",
+      "amount": 0
+    },
+    {
+      "id": "4bc1",
+      "userId": "e08b",
+      "recipientId": 4350205481,
+      "balance": 50
+    },
+    {
+      "id": "9c74",
+      "userId": "e08b",
+      "recipientId": 4350205481,
+      "balance": 50
     }
   ],
   "bills": [

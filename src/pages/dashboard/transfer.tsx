@@ -1,144 +1,178 @@
 import Header from '@components/shared/header';
 import HeaderTitle from '@components/shared/header-title';
 import { formatNumber } from '@utils/numberFormatter';
-import { Formik, Field, ErrorMessage } from 'formik';
-import { useState } from 'react';
-import { Form } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { SessionStorageService } from 'services/SessionStorageService';
 import { toast } from 'sonner';
 import * as Yup from "yup";
 import { useMakeATransferMutation } from '@api/transactionApi';
-import { AnyObject } from 'types/anyObejct';
+import { useLazyGetUserByAccQuery, useUpdateUserAmountByIdMutation } from '@api/usersApi';
 
 
 interface SwipeButtonProps {
-    onClick: (values: { userId: string; recipientId: string; amount: number; }) => Promise<void>; // Update this line
     children: React.ReactNode;
-  }
-  
-  // SwipeButton Component
-  const SwipeButton: React.FC<SwipeButtonProps> = ({ onClick, children }) => {
+}
+
+// SwipeButton Component
+const SwipeButton: React.FC<SwipeButtonProps> = ({ children }) => {
     return (
-      <button
-        onClick={() => onClick({ userId: "defaultUserId", recipientId: "defaultRecipientId", amount: 0 })} // Adjust default values as necessary
-        className="w-full mt-5 bg-purple-600 text-white py-4 rounded-full text-lg shadow-lg hover:bg-purple-700 active:bg-purple-800"
-      >
-        {children}
-      </button>
+        <button
+            type="submit"
+            className="w-full mt-5 bg-purple-600 text-white py-4 rounded-full text-md shadow-lg hover:bg-purple-700 active:bg-purple-800"
+        >
+            {children}
+        </button>
     );
-  };
-
-
-
+};
 
 export default function Transfer() {
     const userData = SessionStorageService.getItem("user");
-
-    const [amount, setAmount] = useState('');
-    const [acc, setAccount] = useState('');
+    
 
     const initialValues = {
-        userId : '',
-        recipientId: '',
-        amount: 0,
+        userId: userData.id,
+        recipientId: '', // Initially empty
+        amount: '', // Initially empty
     }
 
     const validationSchema = Yup.object().shape({
         recipientId: Yup.number()
-            .required("Account Number is required")
-            .max(11, "Account Number must be ten characters long"),
+            .required("Account Number is required"),
         amount: Yup.number()
-          .required("Amount is required")
-          .positive("Amount must be a positive number")
-          .min(1, "Amount must be at least 1")
+            .required("Amount is required")
+            .positive("Amount must be a positive number")
+            .min(1, "Amount must be at least 1"),
     });
 
-    const [pay, {isLoading: isPaying}] = useMakeATransferMutation();
-    
-    const handleSendMoney =  async (values: typeof initialValues) => {
-        try {
-        console.log(`Sending ${amount} money`);
+    const [pay, { isLoading: isPaying }] = useMakeATransferMutation();
+    const [chargeAccount, { isLoading: isCharging }] = useUpdateUserAmountByIdMutation();
+    const [recipientData, { isLoading: isGettingRecipent }] = useLazyGetUserByAccQuery();
 
-          const response = await pay(values).unwrap();
-          if(Array.isArray(response)) {
-            const [userData] = response;
-            toast.success(userData)
-          }else{
-          toast.error("Could not send money")
-        }
-          
+    const handleSendMoney = async (values: typeof initialValues) => {
+
+        try {
+            console.log(`Sending ${values.amount} money`); // Use Formik value
+
+            // Check User balance
+            if (values.amount > userData.balance) {
+                toast.error("Insufficient balance");
+                return;
+            } else {
+                if(values.recipientId.toString().length < 10){
+                    toast.error("Account Number is too short");
+                    return;
+                }else{
+                    const newBalance = userData.balance - parseInt(values.amount);
+                    const collectingCharges = await chargeAccount({id: userData.id, amount: newBalance} ).unwrap();
+
+                    if(!collectingCharges){
+                        toast.error("Failed to charge the account");
+                        return;
+                    }else{
+                        const getRecipient = await recipientData(values.recipientId.toString()).unwrap();
+                        if(!getRecipient){
+                            toast.error("Failed to get recipient data");
+                            return;
+                        }else{
+                            if (Array.isArray(getRecipient) && getRecipient.length > 0) {
+                                const recipient = getRecipient[0]; // Extracting the first object
+                                const newRecipientBalance = recipient.balance + parseInt(values.amount);
+                                const payingRecipient = await chargeAccount({ id: recipient.id, amount: newRecipientBalance}).unwrap();
+
+                                console.log(payingRecipient);
+                            if(!payingRecipient){
+                                toast.error("Failed to pay recipient");
+                                return;
+                            }else{
+                                const response = await pay({
+                                    userId: userData.id,
+                                    recipientId: values.recipientId,
+                                    amount: parseInt(values.amount),
+                                }).unwrap();
+    
+                                if(!response){
+                                    toast.success("Transfer Successful");
+                                }
+                            }
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+            }
+
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
-      };
+    };
 
     return (
         <div className='flex h-[100vh] flex-col items-center justify-center'>
-            <Header/>
-            <p className={`p-6 shadow-lg cursor-pointer flex flex-col items-center rounded-md mb-3 ${amount > userData.balance ? "bg-orange text-black" : "bg-green text-white"}`}>
+            <Header />
+            {JSON.stringify(userData)}
+            <p className={`p-6 shadow-lg cursor-pointer flex flex-col items-center rounded-md mb-3 ${initialValues.amount > userData.balance ? "bg-orange text-black" : "bg-green text-white"}`}>
                 <span className="text-lg">Your balance</span>
                 <span className="text-4xl">N {formatNumber(userData.balance)}</span>
             </p>
-            <div className="p-5 bg-white rounded-2xl shadow-md">
-            <Formik
-            onSubmit={handleSendMoney}
-            validationSchema={validationSchema}
-            initialValues={initialValues}
-            >
-                <Form>
-                    <div>
-                        <HeaderTitle title={'Transfer'}  showBackButon={true}  />
-                    <Field
-                        as="input"
-                        type="number"
-                        name=" recepientId"
-                        className="w-full py-4 px-4 text-center text-2xl text-gray-900 rounded-xl border-gray outline-none focus:ring-2 focus:ring-purple-500 mb-5"
-                        placeholder="Enter Account Number"
-                        autoComplete="false"
-                        onChange={(e :AnyObject) => setAccount(e.target.value)}
-                        value={acc}
+            <div className="p-5 w-[70%] bg-white rounded-2xl shadow-md">
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={handleSendMoney}
+                >
+                    {({ handleChange, values }) => (
+                        <Form>
+                            <div>
+                                <HeaderTitle title={'Transfer'} showBackButon={true} />
+                                <Field
+                                    as="input"
+                                    type="number"
+                                    name="recipientId" // Corrected field name
+                                    className="w-full py-4 px-4 text-center text-xl text-gray rounded-xl border-gray outline-none focus:ring-2 focus:ring-purple-500 mb-5"
+                                    placeholder="Enter Account Number"
+                                    autoComplete="false"
+                                    onChange={handleChange}
+                                />
+                                <ErrorMessage
+                                    name="recipientId"
+                                    component="div"
+                                    className="text-xs text-[#EA580C]"
+                                />
+                            </div>
 
-                    />
-                    <ErrorMessage
-                        name="acc"
-                        component="div"
-                        className="text-xs text-[#EA580C]"
-                    />
-                    </div>
+                            <div>
+                                <Field
+                                    as="input"
+                                    type="number"
+                                    name="amount"
+                                    className="w-full py-4 px-4 text-center text-xl text-gray rounded-xl border-gray outline-none focus:ring-2 focus:ring-purple-500 mb-5"
+                                    placeholder="Enter amount"
+                                    autoComplete="false"
+                                    onChange={handleChange}
+                                />
+                                <ErrorMessage
+                                    name="amount"
+                                    component="div"
+                                    className="text-xs text-[#EA580C]"
+                                />
+                            </div>
 
-                    <div>
-                    <Field
-                        as="input"
-                        type="number"
-                        name="amount"
-                        className="w-full py-4 px-4 text-center text-2xl text-gray-900 rounded-xl border-gray outline-none focus:ring-2 focus:ring-purple-500 mb-5"
-                        placeholder="Enter amount"
-                        autoComplete="false"
-                        onChange={(e : AnyObject) => setAmount(e.target.value)}
-                        value={amount}
-                    />
-                    <ErrorMessage
-                        name="amount"
-                        component="div"
-                        className="text-xs text-[#EA580C]"
-                    />
-                    </div>
-
-                </Form>
-            </Formik>
-            
-                {
-                amount > userData.balance ?
-                (
-                    <p>Amount Exceeded can't transfer</p>
-                )
-                : (
-                <SwipeButton onClick={handleSendMoney}>
-                    {isPaying ? "paying ... " : "Swipe to Send" }
-                </SwipeButton>
-                )}
+                            <div className="mt-4">
+                                {
+                                    values.amount > userData.balance ? (
+                                        <p className='p-4 text-center bg-gray text-white '>Amount Exceeded can't transfer</p>
+                                    ) : (
+                                        <SwipeButton>
+                                            {isPaying ? "paying ... " : "Send"}
+                                        </SwipeButton>
+                                    )}
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
             </div>
         </div>
     );
 };
-
