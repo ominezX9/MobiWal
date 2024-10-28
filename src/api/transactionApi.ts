@@ -11,9 +11,9 @@ const transactionApi = createApi({
     }),
     tagTypes: ["TRANS"],
     endpoints: (builder) => ({
-        viewMyTransactions: builder.query<AnyObject, {userId?: string, recipientId?: string}>({
-            query: (args) => ({
-                url: `/transactions?${args.recipientId ? `recipientId=${args.recipientId}` : `userId=${args.userId}`}`,
+        viewMyTransactions: builder.query<AnyObject, null>({
+            query: () => ({
+                url: `/transactions`,
             }),
             providesTags: ["TRANS"],
         }),

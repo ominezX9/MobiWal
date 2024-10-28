@@ -8,8 +8,15 @@ export default function TransactionList() {
     // const userPass = useAppSelector((store) => store.userDetails.password);
     const userData = SessionStorageService.getItem("user");
     // const navigate = useNavigate();
-    const { data: transactions, isLoading } = useViewMyTransactionsQuery({userId: userData.id, recipientId: userData.acc_no}, {
+    const { data: transactions, isLoading } = useViewMyTransactionsQuery(null,{
         pollingInterval: 5000
+    });
+    
+    const filteredTransactions = transactions?.filter((transaction: { userId: any; recipientId: any; }) => 
+        transaction.userId ===  userData.id || transaction.recipientId === userData.acc_no
+    );
+    const sortedTransactions = filteredTransactions?.slice().sort((a: { date: string | number | Date; }, b: { date: string | number | Date; }) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
 
     console.log(transactions);
@@ -27,7 +34,7 @@ export default function TransactionList() {
                 ) : (
                     <div className=''>
                         <div className="w-full flex flex-col gap-2 overflow-hidden overflow-y-scroll max-h-[400px]">
-                        {transactions?.map((transaction: { type: string; amount: number; date: string | number | Date; recipientId: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
+                        {sortedTransactions?.map((transaction: { type: string; amount: number; date: string | number | Date; recipientId: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
                             <Link key={i} to="" className='shadow rounded-md p-4 cursor-pointer'>
                                 {/* "id": "1",
                                 "userId": 1,
