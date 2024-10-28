@@ -18,6 +18,10 @@ const usersApi = createApi({
             query: (acc_no) => `users?acc_no=${acc_no}`,
             providesTags: ["USER"]
         }),
+        getUserByID: builder.query<UserDetailsResponse, string>({
+            query: (id) => `users/${id}`,
+            providesTags: ["USER"]
+        }),
         // updateuser
         updateUserAmountById: builder.mutation<AnyObject, {id: string, amount: number}>({
             query: (args) => ({
@@ -52,6 +56,8 @@ const usersApi = createApi({
 
 export default usersApi;
 export const {  
+    useGetUserByIDQuery,
+    useLazyGetUserByIDQuery,
     useGetUserByAccQuery,
     useLazyGetUserByAccQuery,
     useGetUserQuery,

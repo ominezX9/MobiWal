@@ -6,7 +6,7 @@ import { SessionStorageService } from 'services/SessionStorageService';
 import { toast } from 'sonner';
 import * as Yup from "yup";
 import { useMakeATransferMutation } from '@api/transactionApi';
-import { useLazyGetUserByAccQuery, useUpdateUserAmountByIdMutation } from '@api/usersApi';
+import { useGetUserByIDQuery, useLazyGetUserByAccQuery, useUpdateUserAmountByIdMutation } from '@api/usersApi';
 
 
 interface SwipeButtonProps {
@@ -27,7 +27,7 @@ const SwipeButton: React.FC<SwipeButtonProps> = ({ children }) => {
 
 export default function Transfer() {
     const userData = SessionStorageService.getItem("user");
-    
+    const { data: user, isLoading } = useGetUserByIDQuery(userData?.id);
 
     const initialValues = {
         userId: userData.id,
@@ -114,7 +114,7 @@ export default function Transfer() {
             {JSON.stringify(userData)}
             <p className={`p-6 shadow-lg cursor-pointer flex flex-col items-center rounded-md mb-3 ${initialValues.amount > userData.balance ? "bg-orange text-black" : "bg-green text-white"}`}>
                 <span className="text-lg">Your balance</span>
-                <span className="text-4xl">N {formatNumber(userData.balance)}</span>
+                <span className="text-4xl">N {formatNumber(parseInt(user?.balance?.toString() || "0"))}</span>
             </p>
             <div className="p-5 w-[70%] bg-white rounded-2xl shadow-md">
                 <Formik
