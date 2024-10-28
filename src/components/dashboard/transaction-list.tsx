@@ -8,7 +8,9 @@ export default function TransactionList() {
     // const userPass = useAppSelector((store) => store.userDetails.password);
     const userData = SessionStorageService.getItem("user");
     // const navigate = useNavigate();
-    const { data: transactions, isLoading } = useViewMyTransactionsQuery(userData.id);
+    const { data: transactions, isLoading } = useViewMyTransactionsQuery({userId: userData.id, recipientId: userData.acc_no}, {
+        pollingInterval: 5000
+    });
 
     console.log(transactions);
 

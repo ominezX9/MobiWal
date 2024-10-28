@@ -11,20 +11,22 @@ const transactionApi = createApi({
     }),
     tagTypes: ["TRANS"],
     endpoints: (builder) => ({
-        viewMyTransactions: builder.query<AnyObject, string>({
-            query: (userId) => ({
-                url: `/transactions?userId=${userId}`,
+        viewMyTransactions: builder.query<AnyObject, {userId?: string, recipientId?: string}>({
+            query: (args) => ({
+                url: `/transactions?${args.recipientId ? `recipientId=${args.recipientId}` : `userId=${args.userId}`}`,
             }),
             providesTags: ["TRANS"],
         }),
-        makeATransfer: builder.mutation<AnyObject, { userId: string; recipientId: string; amount: number }>({
+        makeATransfer: builder.mutation<AnyObject, { userId: string; recipientId: string; amount: number, date: string, type: string }>({
             query: (args) => ({
                 url: `/transactions`,
                 method: "POST",
                 body: JSON.stringify({
                     userId: args.userId,
                     recipientId: args.recipientId,
-                    balance: args.amount
+                    amount: args.amount,
+                    date: args.date,
+                    type: args.type
                 }),
                 headers: {
                     "Content-Type": "application/json",
