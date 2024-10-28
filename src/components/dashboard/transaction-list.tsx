@@ -16,15 +16,15 @@ export default function TransactionList() {
 
 
     return (
-        <div className="w-[80%] mx-auto p-4 bg-white relative -top-12 rounded-[24px]">
+        <div className="w-[80%] mx-auto p-4 bg-white absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-[%] bottom-0 h-[100vh] rounded-[24px]">
             <h1 className="font-bold py-3 text-gray">Transaction</h1>
             {/* {JSON.stringify(transactions)} */}
             {
                 isLoading ? (
                     <div>Loading...</div>
                 ) : (
-                    <div className='overflow-hidden overflow-y'>
-                        <div className="w-full flex flex-col gap-2">
+                    <div className=''>
+                        <div className="w-full flex flex-col gap-2 overflow-hidden overflow-y-scroll max-h-[400px]">
                         {transactions?.map((transaction: { type: string; amount: number; date: string | number | Date; recipientId: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
                             <Link key={i} to="" className='shadow rounded-md p-4 cursor-pointer'>
                                 {/* "id": "1",
@@ -46,6 +46,9 @@ export default function TransactionList() {
                                 
                             </Link>
                         ))}
+                        <div className="pad p-[100px]">
+
+                        </div>
                         </div>
                        
 
