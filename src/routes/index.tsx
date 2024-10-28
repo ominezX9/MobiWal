@@ -7,6 +7,7 @@ import {
 import ProtectedRoute from "@components/shared/protected-route";
 import DefaultLayout from "layout/layout";
 import Redirect from "@components/shared/redirect";
+
 import { dashboardRoute } from "./dashboard-routes";
 import Signup from "@pages/auth/signup";
 
@@ -15,6 +16,9 @@ const Login = lazy(() => import("@pages/auth/login"))
 const Logout = lazy(() => import("@pages/auth/logout"));
 
 const Transfer = lazy(() => import("@pages/dashboard/transfer"));
+const TopUp = lazy(() => import("@pages/topup"));
+const Bills = lazy(() => import("@pages/bills"));
+
 
 const appRoutes = (
     <Route 
@@ -43,6 +47,15 @@ const appRoutes = (
                 path="transfer"
                 element={<Transfer/>}
             />
+            <Route 
+                path="topup"
+                element={<TopUp/>}
+            />
+            <Route 
+                path="bills"
+                element={<Bills/>}
+            />
+
 
         </Route>
 

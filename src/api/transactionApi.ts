@@ -34,6 +34,12 @@ const transactionApi = createApi({
             }),
             invalidatesTags: ["TRANS"],
         }),
+        viewMyBills : builder.query<AnyObject, null>({
+            query: () => ({
+                url: `/bills`,
+            }),
+            providesTags: ["TRANS"],
+        }),
        
     })
 })
@@ -43,4 +49,6 @@ export const {
     useViewMyTransactionsQuery,
     useLazyViewMyTransactionsQuery,
     useMakeATransferMutation,
+    useViewMyBillsQuery,
+    useLazyViewMyBillsQuery
 } = transactionApi
