@@ -45,8 +45,8 @@ export default function Transfer() {
     });
 
     const [pay, { isLoading: isPaying }] = useMakeATransferMutation();
-    const [chargeAccount, { isLoading: isCharging }] = useUpdateUserAmountByIdMutation();
-    const [recipientData, { isLoading: isGettingRecipent }] = useLazyGetUserByAccQuery();
+    const [chargeAccount] = useUpdateUserAmountByIdMutation();
+    const [recipientData] = useLazyGetUserByAccQuery();
 
     const handleSendMoney = async (values: typeof initialValues) => {
 
