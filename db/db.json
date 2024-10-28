@@ -20,7 +20,7 @@
       "id": "f76a",
       "name": "Olu Ominex",
       "email": "ominezx9@gmail.com",
-      "acc_no": "08123456789",
+      "acc_no": "6234517469",
       "balance": 1200,
       "password": "big ratbig rat"
     },
@@ -28,10 +28,9 @@
       "id": "e08b",
       "name": "David Win",
       "email": "winstreakdavid@gmail.com",
-      "acc_no": "08098765432",
-      "balance": 1200,
-      "password": "wilduser123",
-      "amount": 1300
+      "acc_no": "9137526907",
+      "balance": 4800,
+      "password": "wilduser123"
     },
     {
       "id": "1d80",
@@ -55,7 +54,7 @@
       "email": "mikkyr@gmail.com",
       "password": "wildMonkey123",
       "acc_no": "4350205481",
-      "balance": 50
+      "balance": 300
     }
   ],
   "transactions": [
@@ -100,106 +99,28 @@
       "type": "transfer"
     },
     {
-      "id": "6c02",
-      "userId": "defaultUserId",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "1267",
-      "userId": "defaultUserId",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "b5e8",
-      "userId": "defaultUserId",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "f51e",
-      "userId": "defaultUserId",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "b7e9",
-      "userId": "e08b",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "3661",
-      "userId": "e08b",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "f465",
-      "userId": "e08b",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "7447",
-      "userId": "e08b",
-      "recipientId": "1023846190",
-      "amount": 0
-    },
-    {
-      "id": "a78a",
-      "userId": "e08b",
-      "recipientId": "1029384191",
-      "amount": 0
-    },
-    {
-      "id": "d005",
-      "userId": "defaultUserId",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "c44b",
-      "userId": "defaultUserId",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "a497",
-      "userId": "defaultUserId",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "2010",
-      "userId": "defaultUserId",
-      "recipientId": "defaultRecipientId",
-      "amount": 0
-    },
-    {
-      "id": "8759",
-      "userId": "e08b",
-      "recipientId": "1234567890",
-      "amount": 0
-    },
-    {
-      "id": "fa4b",
-      "userId": "e08b",
-      "recipientId": "1234567890",
-      "amount": 0
-    },
-    {
-      "id": "4bc1",
+      "id": "6f48",
       "userId": "e08b",
       "recipientId": 4350205481,
-      "balance": 50
+      "amount": 600,
+      "date": "2024-10-28T10:54:41",
+      "type": "transfer"
     },
     {
-      "id": "9c74",
+      "id": "0695",
       "userId": "e08b",
       "recipientId": 4350205481,
-      "balance": 50
+      "amount": 600,
+      "date": "2024-10-28T10:54:41",
+      "type": "transfer"
+    },
+    {
+      "id": "4860",
+      "userId": "6502",
+      "recipientId": 9137526907,
+      "amount": 1000,
+      "date": "2024-10-28T11:04:37",
+      "type": "transfer"
     }
   ],
   "bills": [
