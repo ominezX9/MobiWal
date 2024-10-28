@@ -122,7 +122,6 @@ export default function Transfer() {
         <div className='flex h-[100vh] flex-col items-center justify-center'>
             <Header />
             {isLoading ? " " : ""}
-            {JSON.stringify(userData)}
             <p className={`p-6 shadow-lg cursor-pointer flex flex-col items-center rounded-md mb-3 ${initialValues.amount > userData.balance ? "bg-orange text-black" : "bg-green text-white"}`}>
                 <span className="text-lg">Your balance</span>
                 <span className="text-4xl">N {formatNumber(parseInt(user?.balance?.toString() || "0"))}</span>
