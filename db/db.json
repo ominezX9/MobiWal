@@ -29,7 +29,7 @@
       "name": "David Win",
       "email": "winstreakdavid@gmail.com",
       "acc_no": "9137526907",
-      "balance": 4800,
+      "balance": 4400,
       "password": "wilduser123"
     },
     {
@@ -54,7 +54,7 @@
       "email": "mikkyr@gmail.com",
       "password": "wildMonkey123",
       "acc_no": "4350205481",
-      "balance": 300
+      "balance": 700
     }
   ],
   "transactions": [
@@ -84,14 +84,6 @@
     },
     {
       "id": "4",
-      "userId": "e08b",
-      "recipientId": "f76a",
-      "amount": 300,
-      "date": "2024-10-23T16:00:00",
-      "type": "transfer"
-    },
-    {
-      "id": "5",
       "userId": "2",
       "recipientId": "f76a",
       "amount": 50,
@@ -120,6 +112,54 @@
       "recipientId": 9137526907,
       "amount": 1000,
       "date": "2024-10-28T11:04:37",
+      "type": "transfer"
+    },
+    {
+      "id": "d935",
+      "userId": "6502",
+      "recipientId": 9137526907,
+      "amount": 200,
+      "date": "2024-10-28T11:04:37",
+      "type": "transfer"
+    },
+    {
+      "id": "8151",
+      "userId": "e08b",
+      "recipientId": 4350205481,
+      "amount": 500,
+      "date": "2024-10-28T11:11:21",
+      "type": "transfer"
+    },
+    {
+      "id": "ed26",
+      "userId": "6502",
+      "recipientId": 9137526907,
+      "amount": 200,
+      "date": "2024-10-28T11:17:28",
+      "type": "transfer"
+    },
+    {
+      "id": "e5f2",
+      "userId": "6502",
+      "recipientId": 9137526907,
+      "amount": 100,
+      "date": "2024-10-28T11:35:35",
+      "type": "transfer"
+    },
+    {
+      "id": "dcf9",
+      "userId": "e08b",
+      "recipientId": 4350205481,
+      "amount": 200,
+      "date": "2024-10-28T11:44:23",
+      "type": "transfer"
+    },
+    {
+      "id": "dd38",
+      "userId": "e08b",
+      "recipientId": 4350205481,
+      "amount": 200,
+      "date": "2024-10-28T11:44:23",
       "type": "transfer"
     }
   ],
