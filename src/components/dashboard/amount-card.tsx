@@ -14,7 +14,9 @@ export default function AmountCard() {
     const userPass = useAppSelector((store) => store.userDetails.password);
     const userData = SessionStorageService.getItem("user");
     const navigate = useNavigate();
-    const { data: user, isLoading } = useGetUserByIDQuery(userData?.id);
+    const { data: user, isLoading } = useGetUserByIDQuery(userData?.id, {
+        pollingInterval: 5000, // Polls every 5 seconds
+    });
 
     if (userData.password === userPass) {
         // just chill

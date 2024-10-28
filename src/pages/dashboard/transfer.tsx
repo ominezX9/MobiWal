@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import * as Yup from "yup";
 import { useMakeATransferMutation } from '@api/transactionApi';
 import { useGetUserByIDQuery, useLazyGetUserByAccQuery, useUpdateUserAmountByIdMutation } from '@api/usersApi';
+import { formattedDate } from '@utils/dateAndFormatter';
 
 
 interface SwipeButtonProps {
@@ -27,12 +28,17 @@ const SwipeButton: React.FC<SwipeButtonProps> = ({ children }) => {
 
 export default function Transfer() {
     const userData = SessionStorageService.getItem("user");
-    const { data: user, isLoading } = useGetUserByIDQuery(userData?.id);
+    const transactionDate = formattedDate;
+    const { data: user, isLoading } = useGetUserByIDQuery(userData?.id, {
+        pollingInterval: 5000, // Polls every 5 seconds
+    });
 
     const initialValues = {
         userId: userData.id,
         recipientId: '', // Initially empty
         amount: '', // Initially empty
+        transactionDate: transactionDate, // Current date
+        type: "transfer"
     }
 
     const validationSchema = Yup.object().shape({
@@ -54,7 +60,7 @@ export default function Transfer() {
             console.log(`Sending ${values.amount} money`); // Use Formik value
 
             // Check User balance
-            if (values.amount > userData.balance) {
+            if (Number(values.amount) > Number(user?.balance)) {
                 toast.error("Insufficient balance");
                 return;
             } else {
@@ -62,7 +68,7 @@ export default function Transfer() {
                     toast.error("Account Number is too short");
                     return;
                 }else{
-                    const newBalance = userData.balance - parseInt(values.amount);
+                    const newBalance = user ? (user?.balance - parseInt(values.amount) ) : 0;
                     const collectingCharges = await chargeAccount({id: userData.id, amount: newBalance} ).unwrap();
 
                     if(!collectingCharges){
@@ -88,10 +94,14 @@ export default function Transfer() {
                                     userId: userData.id,
                                     recipientId: values.recipientId,
                                     amount: parseInt(values.amount),
+                                    date: transactionDate,
+                                    type: "transfer"
                                 }).unwrap();
     
-                                if(!response){
+                                if(response){
                                     toast.success("Transfer Successful");
+                                }else{
+                                    toast.error("Transfer Failed");
                                 }
                             }
                             }
@@ -161,13 +171,14 @@ export default function Transfer() {
 
                             <div className="mt-4">
                                 {
-                                    values.amount > userData.balance ? (
-                                        <p className='p-4 text-center bg-gray text-white '>Amount Exceeded can't transfer</p>
-                                    ) : (
-                                        <SwipeButton>
-                                            {isPaying ? "paying ... " : "Send"}
-                                        </SwipeButton>
-                                    )}
+                                        Number(values.amount) > Number(user?.balance || 0) ? (
+                                            <p className='p-4 text-center bg-gray text-white '>Amount Exceeded can't transfer</p>
+                                        ) : (
+                                            <SwipeButton>
+                                                {isPaying ? "paying ... " : "Send"}
+                                            </SwipeButton>
+                                        )
+                                    }
                             </div>
                         </Form>
                     )}
