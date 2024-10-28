@@ -10,6 +10,7 @@ export default function Bills() {
       <div className="header">Bills</div>
       <div className="flex w-[70%] mx-auto gap-4">
         {
+        isBillsLoading ? "Loading..." : 
           bills?.map((bill: {
             amount: ReactNode; name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; dueDate: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
           }, i: any) => (
