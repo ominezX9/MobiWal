@@ -5,6 +5,8 @@ import { useLazyGetUserQuery } from "@api/usersApi";
 import { updateUser } from "store/action";
 import { SessionStorageService } from "services/SessionStorageService";
 
+const pathsAllowedWithoutAuth = new Set(["/signup", "/update-password"]);
+
 export default function ProtectedRoute() {
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
@@ -12,59 +14,40 @@ export default function ProtectedRoute() {
     const isUserSignedIn = SessionStorageService.getItem("user");
     const navigate = useNavigate();
 
-    console.log(password);
-
     const [getMyDetails, { isLoading, isError }] = useLazyGetUserQuery({
         refetchOnReconnect: true,
     });
 
-    const pathsAllowedWithoutAuth = new Set([
-        "/signup", 
-        "/update-password", 
-    ]);
-
-    const initiateApp = useCallback((password: string) => {
-        if (!password && !isUserSignedIn && !pathsAllowedWithoutAuth.has(pathname)) {
-            startTransition(() => {
-                navigate("/login");
-            });
-        } else {
-            (async () => {
-                try {
-                    if (!isUserSignedIn) {
-                        const res = await getMyDetails(password);
-                        if (res?.data) {
-                            // Dispatch the action to update user details in the Redux store
-                            dispatch(
-                                updateUser({
-                                    password,
-                                    id: res.data?.id || "",
-                                    name: res.data?.name || "",
-                                    email: res.data?.email || "",
-                                    phone: res.data?.phone || "",
-                                    balance: res.data?.balance || 0,
-                                })
-                            );
-                        }
-                    }
-                    // Additional user-related logic here if necessary
-                } catch (err) {
-                    // Error handling
-                    if (!password && !pathsAllowedWithoutAuth.has(pathname)) {
-                        navigate("/login");
-                    }
-                }
-            })();
+    // Initiate app function without navigate check (moved to useEffect) 👌🐱‍🐉
+    const initiateApp = useCallback(async () => {
+        if (!isUserSignedIn) {
+            const res = await getMyDetails(password || "");
+            if (res?.data) {
+                startTransition(() => {
+                    dispatch(
+                        updateUser({
+                            password,
+                            id: res?.data?.id || "",
+                            name: res?.data?.name || "",
+                            email: res?.data?.email || "",
+                            phone: res?.data?.phone || "",
+                            balance: res?.data?.balance || 0,
+                        })
+                    );
+                });
+            }
         }
-    }, [dispatch, navigate, getMyDetails, isUserSignedIn, pathname, pathsAllowedWithoutAuth]);
+    }, [dispatch, getMyDetails, isUserSignedIn, password]);
 
     useEffect(() => {
         if (!password && !isUserSignedIn && !pathsAllowedWithoutAuth.has(pathname)) {
+            // 🤳 Navigate to login if not authenticated and path is restricted
             startTransition(() => navigate("/login"));
-        } else {
-            initiateApp(password || "");
+        } else if (password || isUserSignedIn) {
+            // Call initiateApp only when there’s a password or user is signed in
+            initiateApp();
         }
-    }, [password, pathname, initiateApp, navigate, isUserSignedIn, pathsAllowedWithoutAuth]);
+    }, [password, pathname, isUserSignedIn, navigate, initiateApp]);
 
     if (isLoading) {
         return <p>Loading...</p>;
