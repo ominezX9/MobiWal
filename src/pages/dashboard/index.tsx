@@ -6,8 +6,8 @@ import { getUser } from "@utils/getUserFromSession";
 
 export default function Dashboard() {
   return (
-    <div className="relative h-full">
-      <HeaderTitle title={`Welcome, ${getUser.name}`} showBackButon={false} />
+    <div className="relative h-[100vh]">
+      <HeaderTitle title={`Welcome, ${getUser?.name}`} showBackButon={false} />
       <AmountCard/>
       <TransactionList/>
     </div>
