@@ -12,6 +12,7 @@ import { dashboardRoute } from "./dashboard-routes";
 import Signup from "@pages/auth/signup";
 import Logout from "@pages/auth/logout";
 import Login from "@pages/auth/login";
+import More from "@pages/dashboard/more";
 // pages
 // const Login = lazy(() => import("@pages/auth/login"));
 
@@ -54,6 +55,10 @@ const appRoutes = (
             <Route 
                 path="bills"
                 element={<Bills/>}
+            />
+            <Route
+                path="more"
+                element={<More/>}
             />
 
 

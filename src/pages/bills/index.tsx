@@ -1,4 +1,5 @@
 import { useViewMyBillsQuery } from "@api/transactionApi"
+import HeaderTitle from "@components/shared/header-title";
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
 
 export default function Bills() {
@@ -7,6 +8,8 @@ export default function Bills() {
 
   return (
     <div className="mt-[100px]">
+      <HeaderTitle showBackButon={true} title="Bills"/>
+
       <div className="header">Bills</div>
       <div className="flex w-[70%] mx-auto gap-4">
         {
