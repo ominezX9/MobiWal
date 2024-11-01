@@ -27,7 +27,7 @@ export default function ProtectedRoute() {
                         id: response.data.id || "",
                         name: response.data.name || "",
                         email: response.data.email || "",
-                        phone: response.data.phone || "",
+                        acc_no: response.data.acc_no || "",
                         balance: response.data.balance || 0,
                     }));
                 }

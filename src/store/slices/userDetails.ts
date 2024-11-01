@@ -7,7 +7,7 @@ const nullUser = {
     "id": "",
     "name": "",
     "email": "",
-    "phone": "",
+    "acc_no": "",
     "balance": 0,
     "password": localStorage.getItem("pasword") || "",
 }
@@ -20,7 +20,7 @@ const userDetails = createSlice({
             state.id = action.payload.id;
             state.name = action.payload.name;
             state.email = action.payload.email;
-            state.phone = action.payload.phone;
+            state.acc_no = action.payload.acc_no;
             state.balance = action.payload.balance;
             state.password = action.payload.password;
         },
@@ -30,7 +30,7 @@ const userDetails = createSlice({
             state.id = "";
             state.name = "";
             state.email = "";
-            state.phone = "";
+            state.acc_no = "";
             state.balance = 0;
             state.password = "";
         }
