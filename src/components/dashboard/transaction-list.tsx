@@ -25,7 +25,7 @@ export default function TransactionList() {
 
 
     return (
-        <div className="w-[80%] mx-auto p-4 bg-white absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-[%] bottom-0 h-[100vh] rounded-[24px]">
+        <div className="w-[72%] mx-auto p-4 bg-white absolute top-[85%] left-1/2 -translate-x-1/2 -translate-y-[%] bottom-0 h-[100vh] rounded-[24px]">
             <h1 className="font-bold py-3 text-gray">Transaction</h1>
             {/* {JSON.stringify(transactions)} */}
             {

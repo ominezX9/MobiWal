@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatNumber } from '@utils/numberFormatter';
 import { Link } from 'react-router-dom';
 import { useGetUserByIDQuery } from '@api/usersApi';
+import TransactionList from './transaction-list';
 
 export default function AmountCard() {
     const userPass = useAppSelector((store) => store.userDetails.password);
@@ -28,9 +29,9 @@ export default function AmountCard() {
 
     // alert(JSON.stringify(user))
     return (
-        <div className="bg-fume pb-14">
+        <div className="bg-fume pb-14 relative">
             {/* {JSON.stringify(userPass) + JSON.stringify(userData)} */}
-            <div className="amountblock flex flex-col items-center gap-3 p-20 py-10 pt-[100px]">
+            <div className="amountblock flex flex-col items-center gap-3 p-20 pt-[100px] pb-2">
                 <h2 className="text-gray text-md">Your Balance</h2>
                 {
                     isLoading? (
@@ -45,7 +46,7 @@ export default function AmountCard() {
                 <h3></h3>
             </div>
 
-            <div className="quickkactions flex justify-around p-10 px-20">
+            <div className="quickkactions flex justify-around py-5 px-20">
                 <Link to="../transfer" className="quickaction">
                     <img src={Transfer} />
                     <span>Transfer</span>
@@ -65,6 +66,8 @@ export default function AmountCard() {
                     <span>More</span>
                 </Link>
             </div>
+            
+            <TransactionList/>
 
         </div>
     )
