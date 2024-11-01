@@ -1,15 +1,12 @@
-import { useEffect, startTransition } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Logout() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Start a transition to navigate asynchronously
-        startTransition(() => {
-            sessionStorage.removeItem('user');
-            navigate('/login');
-        });
+        sessionStorage.removeItem('user');
+        navigate('/login');
     }, [navigate]);
 
     return (

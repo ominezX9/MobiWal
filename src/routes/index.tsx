@@ -10,10 +10,10 @@ import Redirect from "@components/shared/redirect";
 
 import { dashboardRoute } from "./dashboard-routes";
 import Signup from "@pages/auth/signup";
-
+import Logout from "@pages/auth/logout";
+import Login from "@pages/auth/login";
 // pages
-const Login = lazy(() => import("@pages/auth/login"))
-const Logout = lazy(() => import("@pages/auth/logout"));
+// const Login = lazy(() => import("@pages/auth/login"));
 
 const Transfer = lazy(() => import("@pages/dashboard/transfer"));
 const TopUp = lazy(() => import("@pages/topup"));
