@@ -54,7 +54,7 @@
       "email": "mikkyr@gmail.com",
       "password": "wildMonkey123",
       "acc_no": "4350205481",
-      "balance": 700
+      "balance": 500
     }
   ],
   "transactions": [
@@ -160,6 +160,30 @@
       "recipientId": 4350205481,
       "amount": 200,
       "date": "2024-10-28T11:44:23",
+      "type": "transfer"
+    },
+    {
+      "id": "655b",
+      "userId": "e08b",
+      "recipientId": 4350205481,
+      "amount": 400,
+      "date": "2024-11-01T11:51:50",
+      "type": "transfer"
+    },
+    {
+      "id": "6a74",
+      "userId": "6502",
+      "recipientId": 9137526907,
+      "amount": 200,
+      "date": "2024-11-01T11:52:16",
+      "type": "transfer"
+    },
+    {
+      "id": "7528",
+      "userId": "6502",
+      "recipientId": 9137526907,
+      "amount": 200,
+      "date": "2024-11-01T11:52:16",
       "type": "transfer"
     }
   ],
