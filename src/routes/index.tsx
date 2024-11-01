@@ -19,6 +19,8 @@ import More from "@pages/dashboard/more";
 const Transfer = lazy(() => import("@pages/dashboard/transfer"));
 const TopUp = lazy(() => import("@pages/topup"));
 const Bills = lazy(() => import("@pages/bills"));
+const Profile  = lazy(() => import("@pages/profile"));
+
 
 
 const appRoutes = (
@@ -60,7 +62,10 @@ const appRoutes = (
                 path="more"
                 element={<More/>}
             />
-
+            <Route
+                path="profile"
+                element={<Profile/>}
+            />
 
         </Route>
 

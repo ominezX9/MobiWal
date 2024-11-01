@@ -13,7 +13,7 @@ export default function DefaultLayout() {
             <MenuBar />
             <div className="w-full">
                 <Header/>
-                <main className="">
+                <main className="h-full">
                     <Suspense
                     fallback={
                         <div className="h-screen flex items-center justify-center">
