@@ -51,7 +51,7 @@ export default function Login(){
 
           
         } catch (error) {
-          toast.error(error?.toString());
+          toast.error(JSON.stringify(error));
         }
       };
 
