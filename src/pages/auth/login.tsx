@@ -6,6 +6,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useLazyLoginQuery } from "@api/authApi";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@hooks/redux-hooks";
+import { toast } from "sonner";
 
 export default function Login(){
     const dispatch = useAppDispatch();
@@ -50,7 +51,7 @@ export default function Login(){
 
           
         } catch (error) {
-          console.log(error);
+          toast.error(error?.toString());
         }
       };
 
