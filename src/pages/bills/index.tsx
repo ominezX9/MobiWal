@@ -1,6 +1,7 @@
 import { useViewMyBillsQuery } from "@api/transactionApi"
 import HeaderTitle from "@components/shared/header-title";
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
+import { toast } from "sonner";
 
 export default function Bills() {
 
@@ -21,7 +22,14 @@ export default function Bills() {
               <h2 className="font-bold text-2xl">{bill.name}</h2>
               <p className="text-sm text-gray">Last Due: {bill.dueDate}</p>
               <p>Amount: N{bill.amount} </p>
-              <button className="bg-primary hover:bg-secondary p-3 text-white">Click to pay</button>
+              <button 
+                className="bg-primary hover:bg-secondary p-3 text-white"
+                onClick={() => {
+                  toast.warning(`
+                    Payment for ${bill.name} is under construction.
+                    `);
+                }}
+              >Click to pay</button>
             </div>
           ))
         }
