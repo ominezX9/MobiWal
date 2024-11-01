@@ -3,7 +3,7 @@ export type UserDetailsResponse = {
     id: string,
     name: string,
     email: string,
-    phone: string,
+    acc_no: string,
     balance: number,
     password: string,
 }
